@@ -21,7 +21,7 @@ class Items(Base):
     size: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
-    parent: Mapped["Items" | None] = relationship(
+    parent: Mapped["Items"] = relationship(
         back_populates="children",
         remote_side=[id]
         ) 
