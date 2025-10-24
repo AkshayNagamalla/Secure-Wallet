@@ -1,17 +1,10 @@
 from sqlalchemy import create_engine
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-DB_USER = os.getenv("USER")
-DB_PASSWORD = os.getenv("PASSWORD")
-DB_HOST = os.getenv("HOST")
-DB_PORT = os.getenv("PORT")
-DB_NAME = os.getenv("DBNAME")
+from sqlalchemy.orm import declarative_base
+from config import settings
 
 DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode=require"
+    f"postgresql+psycopg2://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}?sslmode=require"
 )
 
+Base = declarative_base()
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
