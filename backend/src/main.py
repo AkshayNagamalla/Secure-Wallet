@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from database import engine
 from sqlalchemy import text
-from database import engine, Base,SessionLocal 
+from database import engine, Base,SessionLocal, get_db 
 from models import Users, Items
 from sqlalchemy.orm import Session
 
