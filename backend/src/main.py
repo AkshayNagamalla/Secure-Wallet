@@ -4,18 +4,14 @@ from sqlalchemy import text
 from database import engine, Base,SessionLocal, get_db 
 from models import Users, Items
 from sqlalchemy.orm import Session
+from routes import users_router, files_router, test_router
 
 Base.metadata.create_all(bind=engine)
 
-def get_db():
-    db = SessionLocal() 
-    try:
-        yield db
-    finally:
-        db.close() 
-
 app = FastAPI() 
-
+app.include_router(router=users_router)
+app.include_router(router=files_router)
+app.include_router(router=test_router)
 @app.get("/") 
 def root():
     return {"message" : "Server is working :-)"}

@@ -20,3 +20,6 @@ class Base(DeclarativeBase):
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine) 
+
+blob_storage = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+BLOB_BUCKET = settings.BUCKET_NAME
